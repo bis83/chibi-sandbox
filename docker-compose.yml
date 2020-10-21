@@ -1,0 +1,16 @@
+version: "2"
+services:
+  chibi:
+    image: schemers/chibi
+    volumes:
+      - ".:/work"
+    working_dir: "/work"
+    command: scheme-banner start.scm
+  gostatic:
+    image: pierrezemb/gostatic
+    ports:
+      - "8080:8043"
+    volumes:
+      - "./_site:/srv/http"
+    depends_on:
+      - chibi
